@@ -22,7 +22,6 @@
  * @returns {string} The driving action to take
  */
 export function getTrafficAction(color) {
-  // Your code here
   switch (color.toLowerCase()) {
     case "green" :
       return "GO";
