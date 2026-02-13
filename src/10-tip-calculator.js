@@ -2,7 +2,7 @@
  * 🍽️ TipEasy - Restaurant Tip Calculator
  *
  * You're building TipEasy, an app that helps diners calculate the right
- * tip based on how they'd rate their dining experience. No more awkward
+ * tipPercentage based on how they'd rate their dining experience. No more awkward
  * mental math at the table!
  *
  * Service Rating → Tip Percentage:
@@ -14,8 +14,8 @@
  *
  * Return an object with:
  *   - tipPercentage: the percentage as a number (e.g., 15)
- *   - tipAmount: the calculated tip rounded to 2 decimal places
- *   - totalAmount: bill + tip rounded to 2 decimal places
+ *   - tipAmount: the calculated tipPercentage rounded to 2 decimal places
+ *   - totalAmount: bill + tipPercentage rounded to 2 decimal places
  *
  * Rules:
  *   - If billAmount is 0 or negative, return null
@@ -30,5 +30,33 @@
  * @returns {{ tipPercentage: number, tipAmount: number, totalAmount: number } | null}
  */
 export function calculateTip(billAmount, serviceRating) {
-  // Your code here
+  let tipPercentage = 0, tipAmount = 0, totalAmount = 0;
+  if (billAmount <= 0) return null;
+
+  switch (serviceRating) {
+    case 1:
+      tipPercentage = 5;
+      break;
+    case 2:
+      tipPercentage = 10;
+      break;
+    case 3:
+      tipPercentage = 15;
+      break;
+    case 4:
+      tipPercentage = 20;
+      break;
+    case 5:
+      tipPercentage = 25;
+      break;
+    default:
+      return null;
+  }
+  tipAmount = (tipPercentage/100) * billAmount;
+  totalAmount = tipAmount + billAmount;
+  return {
+    tipPercentage: tipPercentage,
+    tipAmount: parseFloat(tipAmount.toFixed(2)),
+    totalAmount: parseFloat(totalAmount.toFixed(2))
+  };
 }
